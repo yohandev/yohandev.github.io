@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <h1>Hello World</h1>
-        <p>I'm hosted with GitHub Pages.</p>
-        <p>A few things you might find on this site:</p>
-        <ul>
-            <li>images</li>
-            <li>lists(now that's meta!)</li>
-            <li>your purpose</li>
-        </ul>
-    </body>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>soop</title>
+
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;0,900;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+	<!-- Dependencies -->
+	<script src="./node_modules/paper/dist/paper-full.min.js"></script>
+	<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+
+	<!-- Main -->
+	<script src="./dist/bundle.js"></script>
+</head>
+
+<body>
+	<div id="fontload">
+		i need to have actual html text to be able to use a font in js
+	</div>
+	<div id="app">
+		<canvas id="editor"></canvas>
+	</div>
+</body>
 </html>

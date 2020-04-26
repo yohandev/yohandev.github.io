@@ -1,0 +1,22 @@
+html, body
+{
+	margin: 0;
+	height: 100%;
+	overflow: hidden
+}
+
+#editor
+{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #26282e;
+}
+
+#fontload
+{
+	font-family: 'Roboto', sans-serif;
+    font-size: 0;
+}
