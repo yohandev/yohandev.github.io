@@ -1,0 +1,17 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Yohan Guyomard's personal portfolio.",
+  "main": "index.js",
+  "author": "yohandev <yohang@mit.edu>",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch",
+    "serve": "yarn watch & python3 -m http.server --directory www"
+  },
+  "dependencies": {
+    "esbuild": "^0.15.15",
+    "preact": "^10.11.3"
+  }
+}

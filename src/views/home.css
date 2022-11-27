@@ -1,0 +1,39 @@
+#top-bar {
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    padding: 6px 0;
+    background: white;
+}
+
+#side-bar {
+    height: 100%;
+
+    position: fixed;
+    top: 46px;
+    left: 0;
+
+    padding: 14px 4px;
+    background: white;
+}
+
+#video-feed {
+    margin: 62px 72px 0 0;
+
+    height: 300vh;
+    background: blue;
+}
+
+#filter-bar {
+    width: 100%;
+
+    position: fixed;
+    top: 50px;
+    left: 72px;
+
+    padding: 12px 0;
+    background: white;
+}

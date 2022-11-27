@@ -1,0 +1,32 @@
+.filter-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow: scroll;
+}
+
+.filter-bar-option {
+    height: 32px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: rgb(245, 245, 245);
+    border-radius: 8px;
+    
+    padding: 0 12px;
+    margin-right: 12px;
+
+    font-size: 14px;
+    font-family: Helvetica, sans-serif;
+    color: #171717;
+}
+
+.filter-bar-option:first-child {
+    margin-left: 24px;
+}
+
+.filter-bar-option.selected {
+    background: #171717;
+    color: white;
+}
