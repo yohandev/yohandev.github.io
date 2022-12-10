@@ -2,6 +2,11 @@
     display: flex;
     flex-flow: row nowrap;
     overflow: scroll;
+    scrollbar-width: none;
+}
+
+.filter-bar::-webkit-scrollbar {
+    display: none;
 }
 
 .filter-bar-option {
@@ -20,6 +25,7 @@
     font-size: 14px;
     font-family: Helvetica, sans-serif;
     color: #171717;
+    white-space: nowrap;
 }
 
 .filter-bar-option:first-child {

@@ -19,7 +19,7 @@ export const SearchBar = () => (
         <div id="container">
             <input type="text" id="query" name="query"/>
             <button type="submit" id="search">
-                🔍
+                <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
             </button>
         </div>
     </form>

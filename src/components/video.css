@@ -1,0 +1,63 @@
+.video-feed {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.video-card {
+    padding: 10px 10px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 600px) {
+    .video-card {
+        width: calc(100% / 2 - 20px);
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .video-card {
+        width: calc(100% / 3 - 20px);
+    }
+}
+
+@media (min-width: 901px) {
+    .video-card {
+        width: calc(100% / 4 - 20px);
+    }
+}
+
+.video-card #thumbnail {
+    max-width: 320px;
+
+    position: relative;
+    object-fit: cover;
+}
+
+.video-card #thumbnail img,
+.video-card #thumbnail video {    
+    width: 100%;
+    height: auto;
+
+    border-radius: 12px;
+}
+
+.video-card #thumbnail video {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.video-card #thumbnail video {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.video-card #thumbnail:hover video {
+    opacity: 1;
+}

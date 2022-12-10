@@ -4,9 +4,11 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 10;
 
     padding: 6px 0;
     background: white;
+
 }
 
 #side-bar {
@@ -21,18 +23,16 @@
 }
 
 #video-feed {
-    margin: 62px 72px 0 0;
-
-    height: 300vh;
-    background: blue;
+    padding: 112px 0 0 72px;
 }
 
 #filter-bar {
-    width: 100%;
+    width: calc(100vw - 80px);
 
     position: fixed;
     top: 50px;
     left: 72px;
+    z-index: 10;
 
     padding: 12px 0;
     background: white;
