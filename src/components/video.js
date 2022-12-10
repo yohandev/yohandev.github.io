@@ -15,15 +15,18 @@ export const VideoCard = ({meta}) => {
             <img src={meta['thumbnail'] ?? ""}/>
         </div>
         <div id="description">
-            <span id="title">
-                {meta['title']}
-            </span>
-            <span id="channel">
-                Pewdiepie
-            </span>
-            <span id="stats">
-                2.6M views · {meta['date']}
-            </span>
+            <img id="channel-icon" src="assets/icon.png"/>
+            <div id="column">
+                <div id="title">
+                    {meta['title']}
+                </div>
+                <div id="channel">
+                    Pewdiepie
+                </div>
+                <div id="stats">
+                    2.6M views · {meta['date']}
+                </div>
+            </div>
         </div>
     </div>
     );
