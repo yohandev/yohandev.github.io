@@ -4,7 +4,7 @@ import { NavigationBar } from "../components/topbar";
 import { VideoFeed } from "../components/video";
 import './home.css';
 
-import xwing from "../../www/assets/videos/xwing.json"
+import xwing from "../../www/assets/videos/xwing.json";
 
 export const Home = () => (
     <>
