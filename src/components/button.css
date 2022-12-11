@@ -1,0 +1,57 @@
+.touch-button {
+    background: rgb(245, 245, 245);
+
+    height: 36px;
+    border-radius: 36px;
+    border: solid 1px transparent;
+    padding: 0 18px;
+
+    transition: background 0.8s, border 1s, padding 1s;
+
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(16, 16, 16);
+
+    position: relative;
+}
+
+.touch-button:hover {
+    background: rgb(225, 225, 225);
+    border: solid 0px transparent;
+    /* account for the border: */
+    padding: 0 19px;
+}
+
+.touch-button:active {
+    background-color: rgb(205, 205, 205);
+    border: solid 1px rgb(155, 155, 155);
+    padding: 0 18px;
+
+    transition: background 0s, border 0s, padding 0s;
+}
+
+.touch-button #tooltip {
+    max-width: 150px;
+    width: max-content;
+    visibility: hidden;
+    
+    background: rgb(130, 130, 130);
+    border-radius: 6px;
+    padding: 10px;
+
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+
+    position: absolute;
+    top: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.touch-button:hover #tooltip {
+    visibility: visible;
+}

@@ -82,3 +82,12 @@
     font-size: 12px;
     color: rgb(100, 100, 100);
 }
+
+#columns #left #video-meta #subscribe-button {
+    margin-left: 24px;
+}
+
+#columns #left #video-meta #skills {
+    margin-left: auto;
+    justify-self: flex-end;
+}
