@@ -19,6 +19,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.15.15.tgz#32c65517a09320b62530867345222fde7794fbe1"
   integrity sha512-lhz6UNPMDXUhtXSulw8XlFAtSYO26WmHQnCi2Lg2p+/TMiJKNLtZCYUxV4wG6rZMzXmr8InGpNwk+DLT2Hm0PA==
 
+"@ltd/j-toml@^1.35.3":
+  version "1.35.3"
+  resolved "https://registry.yarnpkg.com/@ltd/j-toml/-/j-toml-1.35.3.tgz#8307684af753f54069145baf700cb6fcc2d7d69d"
+  integrity sha512-enJnu6HHD+wulZd5UllwMJSzQd6lumJUwlgh3EssmkSDEB+PjhvI3qsHFbbKdOnhYZLSSi2D9CMYlJ0g/T9iIA==
+
 esbuild-android-64@0.15.15:
   version "0.15.15"
   resolved "https://registry.yarnpkg.com/esbuild-android-64/-/esbuild-android-64-0.15.15.tgz#fd959b034dd761d14e13dda6214b6948841ff4ff"

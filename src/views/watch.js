@@ -1,20 +1,16 @@
 import { FilterBar } from '../components/filters';
 import { NavigationBar } from '../components/topbar';
 import { VideoRecommendations } from '../components/video';
+import { Video } from '../model/video';
 import './watch.css';
 import '../components/button.css';
 
-import xwing from "../../www/assets/videos/xwing.json";
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useState } from "preact/hooks";
 
 export const Watch = ({id}) => {
     const [meta, setMeta] = useState({});
 
-    useEffect(() => {
-        fetch(`assets/videos/${id}.json`)
-            .then(res => res.json())
-            .then(json => setMeta(json));
-    }, []);
+    useEffect(() => Video.load(id).then(setMeta), []);
 
     return (
     <>
@@ -64,11 +60,37 @@ export const Watch = ({id}) => {
                         </button>
                     </div>
                 </div>
+                <Description id="description" meta={meta}/>
             </div>
             <div id="right">
                 <FilterBar options={["All", "Web", "Games", "Microcontrollers", "3D Models", "Computer Graphics"]} selected="All"/>
-                <VideoRecommendations videos={new Array(10).fill(xwing)}/>
+                <VideoRecommendations videos={new Array(10).fill('xwing')}/>
             </div>
         </div>
     </>);
+};
+
+export const Description = ({meta, ...props}) => {
+    const [collapsed, setCollapsed] = useState(true);
+
+    return (
+    <div
+        class={`${collapsed && "collapsed"} touch-button`}
+        style={!collapsed && "pointer-events: none"}
+        onclick={_ => collapsed && setCollapsed(false)}
+        {...props}
+    >
+        <div id="inner">
+            <b id="meta">{meta['views']} views · {meta['date']}</b>
+            <br/>
+            {meta['description']}
+        </div>
+        <b style="cursor: pointer; pointer-events: auto;" onclick={e => {
+            setCollapsed(!collapsed);
+            e.stopPropagation();
+        }}>
+            Show {collapsed ? "more" : "less"}
+        </b>
+    </div>
+    )
 };

@@ -1,15 +1,19 @@
-import { useState } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
+import { Video } from '../model/video';
 import './video.css';
 
-export const VideoCard = ({meta, compact=false}) => {
+export const VideoCard = ({id, compact=false}) => {
     const [hadHover, setHadHover] = useState(false);
+    const [meta, setMeta] = useState({});
+
+    useEffect(() => Video.load(id).then(setMeta), []);
     
     return (
     <a href={`/watch/${meta['id']}`} class={`video-card ${compact && "compact"}`}>
         <div id="thumbnail" onMouseEnter={() => setHadHover(true)}>
             {hadHover && (
                 <video autoplay loop muted>
-                    <source src={meta['preview']}/>
+                    <source src={meta['preview'] ?? ""}/>
                 </video>
             )}
             <img src={meta['thumbnail'] ?? ""}/>
@@ -20,13 +24,13 @@ export const VideoCard = ({meta, compact=false}) => {
             )}
             <div id="column">
                 <div id="title">
-                    {meta['title']}
+                    {meta['title'] ?? "..."}
                 </div>
                 <div id="channel">
                     Pewdiepie
                 </div>
                 <div id="stats">
-                    2.6M views · {meta['date']}
+                    {meta['views'] ?? "..."} views · {meta['date'] ?? ""}
                 </div>
             </div>
         </div>
@@ -36,12 +40,12 @@ export const VideoCard = ({meta, compact=false}) => {
 
 export const VideoFeed = ({videos}) => (
     <div class="video-feed">
-        {videos.map(v => <VideoCard meta={v}/>)}
+        {videos.map(v => <VideoCard id={v}/>)}
     </div>
 );
 
 export const VideoRecommendations = ({videos}) => (
     <div class="video-recomendations">
-        {videos.map(v => <VideoCard meta={v} compact/>)}
+        {videos.map(v => <VideoCard id={v} compact/>)}
     </div>
 );

@@ -4,8 +4,6 @@ import { NavigationBar } from "../components/topbar";
 import { VideoFeed } from "../components/video";
 import './home.css';
 
-import xwing from "../../www/assets/videos/xwing.json";
-
 export const Home = () => (
     <>
         <div id="top-bar">
@@ -18,7 +16,7 @@ export const Home = () => (
             <FilterBar options={["All", "Web", "Games", "Microcontrollers", "3D Models", "Computer Graphics"]} selected="All"/>
         </div>
         <div id="video-feed">
-            <VideoFeed videos={new Array(10).fill(xwing)}/>
+            <VideoFeed videos={new Array(10).fill('xwing')}/>
         </div>
     </>
 );

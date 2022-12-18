@@ -91,3 +91,25 @@
     margin-left: auto;
     justify-self: flex-end;
 }
+
+#columns #left #description {
+    margin-top: 14px;
+    border-radius: 12px;
+    padding: 12px;
+
+    height: 100%;
+
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    white-space: pre-line;
+}
+
+#columns #left #description.collapsed #inner {
+    max-height: 80px;
+    overflow: hidden;
+}
+
+#columns #left #description * {
+    margin: 0 4px;
+}

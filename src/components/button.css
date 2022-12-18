@@ -6,7 +6,7 @@
     border: solid 1px transparent;
     padding: 0 18px;
 
-    transition: background 0.8s, border 1s, padding 1s;
+    transition: background 0.1s, box-shadow 0.5s;
 
     font-family: Helvetica, sans-serif;
     font-size: 14px;
@@ -18,17 +18,14 @@
 
 .touch-button:hover {
     background: rgb(225, 225, 225);
-    border: solid 0px transparent;
-    /* account for the border: */
-    padding: 0 19px;
+    box-shadow: inset 0 0 0 1px transparent;
 }
 
 .touch-button:active {
-    background-color: rgb(205, 205, 205);
-    border: solid 1px rgb(155, 155, 155);
-    padding: 0 18px;
+    background: rgb(205, 205, 205);
+    box-shadow: inset 0 0 0 1px rgb(155, 155, 155);
 
-    transition: background 0s, border 0s, padding 0s;
+    transition: background 0s, box-shadow 0s;
 }
 
 .touch-button #tooltip {

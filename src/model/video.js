@@ -1,7 +1,16 @@
+import TOML from "@ltd/j-toml";
+
+
 export class Video {
-    constructor(title, thumbnail, channel) {
-        this.title = title;
-        this.thumbnail = thumbnail;
-        this.channel = channel;
+    static cache = {};
+
+    static async load(id) {
+        if (id in this.cache) {
+            return this.cache[id];
+        }
+        return fetch(`assets/videos/${id}.toml`)
+            .then(res => res.text())
+            .then(txt => TOML.parse(txt, ' '))
+            .then(toml => this.cache[id] = toml);
     }
 }
