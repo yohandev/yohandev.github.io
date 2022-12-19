@@ -110,6 +110,6 @@
     overflow: hidden;
 }
 
-#columns #left #description * {
+#columns #left #description > * {
     margin: 0 4px;
 }

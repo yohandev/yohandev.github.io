@@ -6,6 +6,7 @@ import './watch.css';
 import '../components/button.css';
 
 import { useEffect, useState } from "preact/hooks";
+import { VideoPlayer } from '../components/player';
 
 export const Watch = ({id}) => {
     const [meta, setMeta] = useState({});
@@ -19,9 +20,7 @@ export const Watch = ({id}) => {
         </div>
         <div id="columns">
             <div id="left">
-                <div id="video">
-
-                </div>
+                <VideoPlayer id="video" meta={meta}/>
                 <div id="title">
                     {meta['title']}
                 </div>
