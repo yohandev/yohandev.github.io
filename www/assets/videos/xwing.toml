@@ -1,7 +1,5 @@
 id = "xwing"
 title = "Multiplayer Dogfight Game"
-thumbnail = "assets/videos/thumbnails/xwing.jpg"
-preview = "assets/videos/previews/xwing.mp4"
 channel = "Hobby Projects"
 date = "4 years ago"
 views = "666K"
@@ -27,4 +25,3 @@ voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem
 eum fugiat quo voluptas nulla pariatur?
 """
 video = "assets/videos/previews/xwing.mp4"
-image = "assets/videos/thumbnails/xwing.jpg"

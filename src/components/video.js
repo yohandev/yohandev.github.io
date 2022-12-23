@@ -13,10 +13,10 @@ export const VideoCard = ({id, compact=false}) => {
         <div id="thumbnail" onMouseEnter={() => setHadHover(true)}>
             {hadHover && (
                 <video autoplay loop muted>
-                    <source src={meta['preview'] ?? ""}/>
+                    <source src={`assets/videos/previews/${id}.mp4`}/>
                 </video>
             )}
-            <img src={meta['thumbnail'] ?? ""}/>
+            <img src={`assets/videos/thumbnails/${id}.jpg`}/>
         </div>
         <div id="description">
             {!compact && (

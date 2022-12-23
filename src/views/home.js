@@ -2,6 +2,7 @@ import { FilterBar } from "../components/filters";
 import { LinksBar } from "../components/sidebar";
 import { NavigationBar } from "../components/topbar";
 import { VideoFeed } from "../components/video";
+import { videos } from "../../www/assets/videos/videos.json";
 import './home.css';
 
 export const Home = () => (
@@ -16,7 +17,7 @@ export const Home = () => (
             <FilterBar options={["All", "Web", "Games", "Microcontrollers", "3D Models", "Computer Graphics"]} selected="All"/>
         </div>
         <div id="video-feed">
-            <VideoFeed videos={new Array(10).fill('xwing')}/>
+            <VideoFeed videos={videos}/>
         </div>
     </>
 );

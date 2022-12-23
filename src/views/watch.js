@@ -63,7 +63,7 @@ export const Watch = ({id}) => {
             </div>
             <div id="right">
                 <FilterBar options={["All", "Web", "Games", "Microcontrollers", "3D Models", "Computer Graphics"]} selected="All"/>
-                <VideoRecommendations videos={new Array(10).fill('xwing')}/>
+                <VideoRecommendations videos={new Array(10).fill('ragdoll')}/>
             </div>
         </div>
     </>);
