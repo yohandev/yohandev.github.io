@@ -1,6 +1,16 @@
 .links-bar {
-    width: 64px;
-    height: 100%;
+    width: 100%;
+    height: 64px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+
+    background: white;
+
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
 }
 
 .links-bar-item {
@@ -8,8 +18,8 @@
 }
 
 .links-bar-item #container {
-    width: 100%;
-    height: 74px;
+    width: 74px;
+    height: 100%;
 
     display: flex;
     flex-flow: column;

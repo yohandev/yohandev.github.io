@@ -38,8 +38,8 @@ export const VideoCard = ({id, compact=false}) => {
     );
 };
 
-export const VideoFeed = ({videos}) => (
-    <div class="video-feed">
+export const VideoFeed = ({videos, ...props}) => (
+    <div class="video-feed" {...props}>
         {videos.map(v => <VideoCard id={v}/>)}
     </div>
 );

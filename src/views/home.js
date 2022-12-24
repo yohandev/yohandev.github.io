@@ -7,8 +7,13 @@ import './home.css';
 
 export const Home = () => (
     <>
-        <NavigationBar/>
-        <FilterBar options={["All", "Web", "Games", "Microcontrollers", "3D Models", "Computer Graphics"]} selected="All"/>
-        <VideoFeed videos={videos}/>
+        <NavigationBar id="nav-bar"/>
+        <LinksBar id="links-bar"/>
+        <FilterBar
+            id="filter-bar"
+            options={["All", "Web", "Games", "Microcontrollers", "3D Models", "Computer Graphics"]}
+            selected="All"
+        />
+        <VideoFeed id="video-feed" videos={videos}/>
     </>
 );

@@ -1,7 +1,7 @@
 import "./filter.css";
 
-export const FilterBar = ({options, selected}) => (
-    <div class="filter-bar">
+export const FilterBar = ({options, selected, ...props}) => (
+    <div class="filter-bar" {...props}>
         {options.map(opt => (
             <div key={opt} class={`filter-bar-option ${selected == opt && 'selected'}`}>
                 {opt}

@@ -1,7 +1,7 @@
 import './topbar.css';
 
-export const NavigationBar = () => (
-    <div class="navigation-bar">
+export const NavigationBar = (props) => (
+    <div class="navigation-bar" {...props}>
         <div id="logo">
             <Logo/>
         </div>
@@ -9,7 +9,7 @@ export const NavigationBar = () => (
             {/* <SearchBar/> */}
         </div>
         <div id="icon">
-            <ProfileIcon/>
+            {/* <ProfileIcon/> */}
         </div>
     </div>
 );

@@ -4,8 +4,8 @@ const GITHUB = "https://github.com/yohandev";
 const LINKEDIN = "https://www.linkedin.com/in/yohan-guyomard-110363221/";
 const EMAIL = "mailto:yohang@mit.edu";
 
-export const LinksBar = () => (
-    <div class="links-bar">
+export const LinksBar = (props) => (
+    <div class="links-bar" {...props}>
         <LinksBarIcon icon="fa-solid fa-folder" label="Projects" link="/" selected/>
         <LinksBarIcon icon="fa-brands fa-github" label="GitHub" link={GITHUB}/>
         <LinksBarIcon icon="fa-brands fa-linkedin" label="LinkedIn" link={LINKEDIN}/>

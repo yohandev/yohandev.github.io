@@ -66,7 +66,11 @@ export const Watch = ({id}) => {
                 <Description id="description" meta={meta}/>
             </div>
             <div id="right">
-                <FilterBar options={["All", "Web", "Games", "Microcontrollers", "3D Models", "Computer Graphics"]} selected="All"/>
+                <FilterBar
+                    id="filter-bar"
+                    options={["All", "Web", "Games", "Microcontrollers", "3D Models", "Computer Graphics"]}
+                    selected="All"
+                />
                 <VideoRecommendations videos={videos}/>
             </div>
         </div>
