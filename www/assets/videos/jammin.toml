@@ -1,9 +1,21 @@
 id = "jammin"
 title = "Jammin'"
-channel = ""
-date = "years ago"
-views = "666K"
+channel = "MIT Projects"
+date = "1 year ago"
 description = """
-
+Introducing: Jammin'
+\n
+The online platform for creating music in realtime with anyone, wherever
+they may be in the world.
+\n\n
+It features a lobby system that functions like most other .io games; join
+at the root URL to create a new room, then share that link(ie. jammin.fun/pe3jif)
+with you friends for them to join you.
+\n\n
+Then, everything is synchronized: your avatars, cursor positions, as well as
+the musical instruments' positions and sounds.
+\n\n
+I implemented this using Preact, express and socket.io as part of a month-long
+MIT course, but the final project was made in about two weeks.
 """
-video = ""
+video = "assets/videos/previews/jammin.mp4"

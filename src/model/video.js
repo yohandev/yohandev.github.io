@@ -11,6 +11,9 @@ export class Video {
         return fetch(`assets/videos/${id}.toml`)
             .then(res => res.text())
             .then(txt => TOML.parse(txt, ' '))
-            .then(toml => this.cache[id] = toml);
+            .then(toml => this.cache[id] = {
+                views: `${Math.floor(Math.random() * 899) + 100}K`,
+                ...toml,
+            });
     }
 }

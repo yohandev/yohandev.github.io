@@ -1,9 +1,10 @@
 id = "voxels"
 title = "Voxel Engine"
-channel = ""
-date = "years ago"
-views = "666K"
+channel = "Hobby Projects"
+date = "2 years ago"
 description = """
-
+One of my many attempts at creating a voxel engine. This one
+leverages the WebGPU API for graphics, and features a custom
+entity component system(ECS).
 """
-video = ""
+video = "assets/videos/previews/voxels.mp4"

@@ -1,9 +1,14 @@
 id = "grappling"
 title = "Grappling Game"
-channel = ""
-date = "years ago"
-views = "666K"
+channel = "Hobby Projects"
+date = "5 years ago"
 description = """
-
+I sketched a little character I really liked sometime ago, then decided
+to make an entire video game around it. It's made in Unity and was one
+of my first attempts at exploiting the built-in physics to get a really
+fun game-feel.
+\n\n
+It was never polished but the gameplay definitely has potential so I
+might pick it up again!
 """
-video = ""
+video = "assets/videos/content/grappling.mp4"

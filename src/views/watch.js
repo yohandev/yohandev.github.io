@@ -2,6 +2,7 @@ import { FilterBar } from '../components/filters';
 import { NavigationBar } from '../components/topbar';
 import { VideoRecommendations } from '../components/video';
 import { Video } from '../model/video';
+import { videos } from "../../www/assets/videos/videos.json";
 import './watch.css';
 import '../components/button.css';
 
@@ -63,7 +64,7 @@ export const Watch = ({id}) => {
             </div>
             <div id="right">
                 <FilterBar options={["All", "Web", "Games", "Microcontrollers", "3D Models", "Computer Graphics"]} selected="All"/>
-                <VideoRecommendations videos={new Array(10).fill('ragdoll')}/>
+                <VideoRecommendations videos={videos}/>
             </div>
         </div>
     </>);

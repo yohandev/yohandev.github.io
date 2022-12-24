@@ -1,6 +1,7 @@
 .video-player {
     position: relative;
     overflow: hidden;
+    background: black;
 }
 
 .video-player .video-player-bar {

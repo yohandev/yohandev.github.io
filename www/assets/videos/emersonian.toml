@@ -1,9 +1,14 @@
-id = "clock"
+id = "emersonian"
 title = "Emersonian Gift"
-channel = ""
-date = "years ago"
-views = "666K"
+channel = "High School Projects"
+date = "3 years ago"
 description = """
-
+As the final project for my English class, I created a web-based
+multiplayer game. It was made on very short notice, but features realtime
+movement, tile-based building, state synchronization and a lobby system.
+\n\n
+The server is written in Node using express and socket.io. The client is
+just vanilla Typescript. I deployed it on Heroku and was pleasantly
+surprised to see it still work three years later.
 """
-video = ""
+video = "assets/videos/previews/emersonian.mp4"

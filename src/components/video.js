@@ -27,7 +27,7 @@ export const VideoCard = ({id, compact=false}) => {
                     {meta['title'] ?? "..."}
                 </div>
                 <div id="channel">
-                    Pewdiepie
+                    {meta['channel']}
                 </div>
                 <div id="stats">
                     {meta['views'] ?? "..."} views · {meta['date'] ?? ""}

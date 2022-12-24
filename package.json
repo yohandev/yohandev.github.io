@@ -8,7 +8,7 @@
   "scripts": {
     "build": "node build.js",
     "watch": "node build.js --watch",
-    "serve": "yarn watch & python3 -m http.server --directory www"
+    "serve": "yarn watch & http-server www"
   },
   "dependencies": {
     "@ltd/j-toml": "^1.35.3",
@@ -16,5 +16,8 @@
     "history": "^5.3.0",
     "preact": "^10.11.3",
     "preact-router": "^4.1.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
