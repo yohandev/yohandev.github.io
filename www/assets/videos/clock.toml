@@ -12,3 +12,4 @@ Chrome dinosaur that runs across the screen.
 """
 video = "assets/videos/content/clock.mp4"
 tags = ["C", "Arduino"]
+filters = ["All", "Microcontrollers", "Web"]

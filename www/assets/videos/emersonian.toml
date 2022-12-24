@@ -13,3 +13,4 @@ surprised to see it still work three years later.
 """
 video = "assets/videos/previews/emersonian.mp4"
 tags = ["Javascript", "Node"]
+filters = ["All", "Web", "Games"]

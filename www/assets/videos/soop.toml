@@ -9,3 +9,4 @@ world programming paradigms.
 """
 video = "assets/videos/content/soop.mp4"
 tags = ["Typescript"]
+filters = ["All", "Web"]

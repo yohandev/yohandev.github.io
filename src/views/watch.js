@@ -11,6 +11,7 @@ import { VideoPlayer } from '../components/player';
 
 export const Watch = ({id}) => {
     const [meta, setMeta] = useState({});
+    const [filter, setFilter] = useState("All");
 
     useEffect(() => Video.load(id).then(setMeta), [id]);
 
@@ -69,9 +70,10 @@ export const Watch = ({id}) => {
                 <FilterBar
                     id="filter-bar"
                     options={["All", "Web", "Games", "Microcontrollers", "3D Models", "Computer Graphics"]}
-                    selected="All"
+                    selected={filter}
+                    onSelect={setFilter}
                 />
-                <VideoRecommendations videos={videos}/>
+                <VideoRecommendations filter={filter} videos={videos}/>
             </div>
         </div>
     </>);

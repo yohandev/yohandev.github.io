@@ -24,3 +24,4 @@ universe
 """
 video = "assets/videos/previews/drone.mp4"
 tags = ["C", "CAD"]
+filters = ["All", "Microcontrollers", "3D Models"]

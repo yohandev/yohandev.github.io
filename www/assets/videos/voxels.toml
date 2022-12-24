@@ -9,3 +9,4 @@ entity component system(ECS).
 """
 video = "assets/videos/previews/voxels.mp4"
 tags = ["Rust"]
+filters = ["All", "Games", "Computer Graphics"]

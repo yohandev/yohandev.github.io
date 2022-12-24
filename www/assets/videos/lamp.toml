@@ -15,3 +15,4 @@ abstractions I made over the course of the semester.
 """
 video = "assets/videos/previews/lamp.mp4"
 tags = ["C++", "Arduino"]
+filters = ["All", "Web", "Microcontrollers"]

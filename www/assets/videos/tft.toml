@@ -24,3 +24,4 @@ laptop do the work.
 """
 video = "assets/videos/previews/tft.mp4"
 tags = ["C", "Python"]
+filters = ["All", "Microcontrollers"]

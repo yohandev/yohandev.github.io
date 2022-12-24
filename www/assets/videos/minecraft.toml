@@ -13,3 +13,4 @@ scene system.
 """
 video = "assets/videos/previews/minecraft.mp4"
 tags = ["Java"]
+filters = ["All", "Games"]

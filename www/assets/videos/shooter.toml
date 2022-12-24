@@ -15,3 +15,4 @@ a server-authoritative architecture.
 """
 video = "assets/videos/previews/shooter.mp4"
 tags = ["C#", "Unity"]
+filters = ["All", "Games"]

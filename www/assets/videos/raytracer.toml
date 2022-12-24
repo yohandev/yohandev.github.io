@@ -9,3 +9,4 @@ and supports basic geometry as well as HDRIs.
 """
 video = "assets/videos/previews/raytracer.mp4"
 tags = ["Rust"]
+filters = ["All", "Computer Graphics"]

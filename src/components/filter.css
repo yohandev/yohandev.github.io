@@ -28,6 +28,8 @@
     font-family: Helvetica, sans-serif;
     color: #171717;
     white-space: nowrap;
+
+    cursor: pointer;
 }
 
 .filter-bar-option.selected {

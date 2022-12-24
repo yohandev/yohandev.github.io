@@ -20,3 +20,4 @@ MIT course, but the final project was made in about two weeks.
 """
 video = "assets/videos/previews/jammin.mp4"
 tags = ["React", "Node"]
+filters = ["All", "Web", "Games"]

@@ -2,14 +2,18 @@ import { useEffect, useState } from 'preact/hooks';
 import { Video } from '../model/video';
 import './video.css';
 
-export const VideoCard = ({id, compact=false}) => {
+export const VideoCard = ({id, compact=false, filter}) => {
     const [hadHover, setHadHover] = useState(false);
     const [meta, setMeta] = useState({});
 
     useEffect(() => Video.load(id).then(setMeta), []);
     
     return (
-    <a href={`/watch/${meta['id']}`} class={`video-card ${compact && "compact"}`}>
+    <a
+        href={`/watch/${meta['id']}`}
+        class={`video-card ${compact && "compact"}`}
+        style={meta['filters']?.includes(filter) ? "" : "display: none"}
+    >
         <div id="thumbnail" onMouseEnter={() => setHadHover(true)}>
             {hadHover && (
                 <video autoplay loop muted>
@@ -38,14 +42,14 @@ export const VideoCard = ({id, compact=false}) => {
     );
 };
 
-export const VideoFeed = ({videos, ...props}) => (
+export const VideoFeed = ({videos, filter, ...props}) => (
     <div class="video-feed" {...props}>
-        {videos.map(v => <VideoCard id={v}/>)}
+        {videos.map(v => <VideoCard filter={filter} id={v}/>)}
     </div>
 );
 
-export const VideoRecommendations = ({videos}) => (
+export const VideoRecommendations = ({videos, filter}) => (
     <div class="video-recomendations">
-        {videos.map(v => <VideoCard id={v} compact/>)}
+        {videos.map(v => <VideoCard filter={filter} id={v} compact/>)}
     </div>
 );
