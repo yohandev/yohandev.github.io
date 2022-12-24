@@ -1,5 +1,5 @@
 id = "lamp"
-title = "ESP-32 Lamp"
+title = "ESP32 Lamp"
 channel = "MIT Projects"
 date = "1 year ago"
 description = """
@@ -14,3 +14,4 @@ my embedded systems class and features many of the C++ hardware
 abstractions I made over the course of the semester.
 """
 video = "assets/videos/previews/lamp.mp4"
+tags = ["C++", "Arduino"]

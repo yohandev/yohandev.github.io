@@ -11,3 +11,4 @@ minute thereafter, from a Flask server. Just for fun, I've added the
 Chrome dinosaur that runs across the screen.
 """
 video = "assets/videos/content/clock.mp4"
+tags = ["C", "Arduino"]

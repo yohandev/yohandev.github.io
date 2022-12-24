@@ -12,3 +12,4 @@ It's made in Unity with 3D assets modeled in Blender and UI
 components in Photoshop; everything is done in 24h!
 """
 video = "assets/videos/previews/ragdoll.mp4"
+tags = ["Unity", "Blender"]

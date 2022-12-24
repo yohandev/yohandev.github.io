@@ -4,7 +4,7 @@
     overflow: scroll;
     scrollbar-width: none;
 
-    margin-left: 24px;
+    margin-left: 10px;
 }
 
 .filter-bar::-webkit-scrollbar {

@@ -12,3 +12,4 @@ It was never polished but the gameplay definitely has potential so I
 might pick it up again!
 """
 video = "assets/videos/content/grappling.mp4"
+tags = ["C#", "Unity"]

@@ -4,11 +4,12 @@ channel = "Hobby Projects"
 date = "5 years ago"
 description = """
 I've made dozens of Minecraft Bukkit plugins in the past,
-but this is the only one I could find a video recording of.
-😅
+but this is the only one I could find a video recording of
+(oops!).
 \n\n
 This one specifically brings Zelda BoTW-esque gameplay to
 multiplayer Minecraft, and features a custom cinematic cut-
 scene system.
 """
 video = "assets/videos/previews/minecraft.mp4"
+tags = ["Java"]

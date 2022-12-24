@@ -14,3 +14,4 @@ and features server reconciliation, client interpolation and
 a server-authoritative architecture.
 """
 video = "assets/videos/previews/shooter.mp4"
+tags = ["C#", "Unity"]

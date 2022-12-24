@@ -6,7 +6,7 @@ export const NavigationBar = () => (
             <Logo/>
         </div>
         <div id="search-bar">
-            <SearchBar/>
+            {/* <SearchBar/> */}
         </div>
         <div id="icon">
             <ProfileIcon/>
@@ -34,5 +34,6 @@ export const ProfileIcon = () => (
 export const Logo = () => (
     <a class="logo" href="/">
         <img src="assets/logo.svg"/>
+        Portfolio
     </a>
 );

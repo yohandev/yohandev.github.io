@@ -19,3 +19,4 @@ I implemented this using Preact, express and socket.io as part of a month-long
 MIT course, but the final project was made in about two weeks.
 """
 video = "assets/videos/previews/jammin.mp4"
+tags = ["React", "Node"]

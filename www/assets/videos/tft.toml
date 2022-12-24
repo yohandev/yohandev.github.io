@@ -3,7 +3,7 @@ title = "RP2040 TFT Drivers"
 channel = "Hobby Projects"
 date = "1 year ago"
 description = """
-This project is twofold, and part of something larger(🤫).
+This project is twofold, and part of something larger.
 \n\n
 The first thing is super fast LCD display drivers for a
 RP2040 microcontroller; using the typical 1-bit SPI interface,
@@ -23,3 +23,4 @@ of the format string, the arguments as-is, and lets the host
 laptop do the work.
 """
 video = "assets/videos/previews/tft.mp4"
+tags = ["C", "Python"]

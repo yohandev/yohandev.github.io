@@ -8,3 +8,4 @@ It aims to be a more natural transition from block programming to real
 world programming paradigms. 
 """
 video = "assets/videos/content/soop.mp4"
+tags = ["Typescript"]

@@ -12,7 +12,7 @@ import { VideoPlayer } from '../components/player';
 export const Watch = ({id}) => {
     const [meta, setMeta] = useState({});
 
-    useEffect(() => Video.load(id).then(setMeta), []);
+    useEffect(() => Video.load(id).then(setMeta), [id]);
 
     return (
     <>
@@ -39,19 +39,22 @@ export const Watch = ({id}) => {
                         Subscribed
                     </button>
                     <div id="skills">
-                        <button class="touch-button">
-                            C#
-                            <div id="tooltip">
-                                This project uses C#
-                            </div>
-                        </button>
-                        <button class="touch-button">
-                            Unity
-                            <div id="tooltip">
-                                This project is made in Unity
-                            </div>
-                        </button>
-                        <button class="touch-button">
+                        {meta['tags']?.map(tag => (
+                            <button class="touch-button">
+                                {tag}
+                                <div id="tooltip">
+                                    This project uses {tag}
+                                </div>
+                            </button>
+                        ))}
+                        <button
+                            class="touch-button"
+                            onclick={() => navigator.share({
+                                title: meta['title'],
+                                text: "Yohan Guyomard's portfolio.",
+                                url: window.location.href
+                            })}
+                        >
                             <i class="fa-solid fa-share"></i>
                             &nbsp;Share
                             <div id="tooltip">

@@ -8,3 +8,4 @@ programming language is a CPU raytracer. It's fully parallelized
 and supports basic geometry as well as HDRIs.
 """
 video = "assets/videos/previews/raytracer.mp4"
+tags = ["Rust"]
