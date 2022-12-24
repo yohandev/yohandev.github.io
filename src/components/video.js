@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 import { Video } from '../model/video';
+import { channels } from '../../www/assets/channels.json';
 import './video.css';
 
 export const VideoCard = ({id, compact=false, filter}) => {
@@ -24,7 +25,7 @@ export const VideoCard = ({id, compact=false, filter}) => {
         </div>
         <div id="description">
             {!compact && (
-                <img id="channel-icon" src="assets/icon.png"/>
+                <img id="channel-icon" src={channels[meta['channel']]}/>
             )}
             <div id="column">
                 <div id="title">

@@ -1,0 +1,7 @@
+{
+    "channels": {
+        "MIT Projects": "assets/mit.jpg",
+        "Hobby Projects": "assets/icon.png",
+        "High School Projects": "assets/lahs.jpg"
+    }
+}
