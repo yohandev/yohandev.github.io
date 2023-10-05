@@ -1,0 +1,115 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8">
+                <meta name="HandheldFriendly" content="true"/>
+                <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=yes">
+                
+                <title>Picocraft / Yohan Guyomard</title>
+                <link rel="stylesheet" href="../../styles.css">
+            </head>
+            <body>
+                <a href="../../">Portfolio</a> &gt; <b>Picocraft</b>
+                <h1>Picocraft</h1>
+<p><img src="assets/preview.jpeg" alt="Thumbnail">
+<em>This week I am testing the limits of embedded software and hardware.</em></p>
+<h2>Ray-Traced Minecraft on $4 Hardware</h2>
+<p>The idea is to implement a voxel renderer that runs completely on the <a href="https://www.raspberrypi.com/products/raspberry-pi-pico/">Raspberry Pi Pico</a>, in real(<em>-ish</em>) time, and displays it on a small LCD display. Basically, Minecraft on a really cheap microcontroller.</p>
+<p><img src="assets/pico.jpeg" alt="Pico">
+<em>Raspberry Pi Pico, courtesy of hackster.io</em></p>
+<p>So what are we working with? Well, the <a href="https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf">datasheet for RP2040</a> gives us these numbers:</p>
+<ul>
+<li>133 MHz Cortex-M0+ Dual-Core Processor</li>
+<li>264kB SRAM</li>
+</ul>
+<p>That is... incredibly low. Don&#39;t get me wrong, it&#39;s perfectly respectable for a modern microcontroller but it doesn&#39;t even begin to compare to the <a href="https://educommunity.minecraft.net/hc/en-us/articles/360047556591-System-Requirements">minimum specs</a> for running Minecraft. To put it into perspective, my laptop (which barely hits 30fps) has a 3.49GHz processor with many more cores and 16GB of RAM. That&#39;s over 26 times faster, times the additional number of cores! And 264kB is about 3 seconds of <a href="https://pamaproaudio.com/free-audio-file-size-calculator/">compressed audio</a>, or a 200px by 300px <a href="https://toolstud.io/photo/filesize.php?imagewidth=200&imageheight=300">PNG file</a>.</p>
+<h2>LCD Display</h2>
+<p>First, I needed to get some LCD display working with the Pico. The lab had some of these <a href="https://a.co/d/0b5BqOW">1.8&quot; Adafruit breakout boards</a> for the ST7735 lying around, so I went with that. It has a resolution of 160x128 pixels which is perfect for my use case; having more pixels to draw would just make the project harder. So I created a <a href="https://www.rust-lang.org/">Rust</a> project using the <a href="https://docs.rs/rp2040-hal/latest/rp2040_hal/">RP2040 HAL crate</a>, wrote boilerplate for some <a href="https://github.com/sajattack/st7735-lcd-rs">ST7735 drivers</a> I found online andddd:</p>
+<video width="720" height="405" autoplay loop muted playsinline>
+    <source src="assets/tft_slow.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+
+<p>The issue here isn&#39;t the flicker. I programmed the green LED to toggle on/off whenever the CPU is finished updating the screen, and the video above is in realtime so we&#39;ve got a big problem: rendering the display alone takes ages! Ideally, the green LED should appear static to the human eye (because it&#39;s blinking so fast) and the CPU should be busy for even less time than that. Ok, let&#39;s go down this rabbit hole.</p>
+<h2>SPI</h2>
+<p>I decided to write my own drivers for the ST7735 (the chip on the LCD display) loosely based off the <a href="https://www.displayfuture.com/Display/datasheet/controller/ST7735.pdf">datasheet</a> and <a href="https://github.com/cbm80amiga/Arduino_ST7735_Fast/blob/master/Arduino_ST7735_Fast.cpp">these</a> <a href="https://github.com/sajattack/st7735-lcd-rs">two</a> libraries. The idea is very simple: Pico &lt;-&gt; SPI &lt;-&gt; ST7735, where SPI refers to the serial protocol (as opposed to e.g. I2C). Then it&#39;s just a matter of sending the right bytes (commands, data) in the right order.</p>
+<h2>DMA</h2>
+<p>The biggest issue with just about every ST7735 driver is that it blocks the CPU while pixels are being transmitted to the screen. It&#39;s possible to just increase the SPI baudrate to drop that time from a dozen milliseconds to just a few, but that&#39;s still a considerable amount of time for a processor. What I&#39;d like is for the CPU to be free to render the next frame while the current frame is being transmitted over SPI.</p>
+<p>In comes direct memory access (DMA). It&#39;s hardware on the processor that can only perform <em>memcpy</em>&#39;s, e.g. SRAM &lt;-&gt; SRAM, SPI &lt;-&gt; SRAM, PIO &lt;-&gt; SRAM, etc. It isn&#39;t exclusive to the RP2040, but for some reason ST7735 drivers online don&#39;t make use of it. For my project, I store a contiguous screen buffer (i.e. size 128 x 160 pixels) that the CPU can take its time updating. Meanwhile, DMA will transmit that buffer over SPI to the display. So from the side of the CPU, it&#39;s like displaying every pixel at once rather than one at a time.</p>
+<p>The immediate speed benefits from this are pretty good, but more importantly the CPU is busy for <em>nanoseconds</em> per frame. Big upgrade!</p>
+<h2>Double Buffering</h2>
+<p>A common technique in computer graphics is double buffering. As the name implies, it involves using two screen buffers: one for drawing and the other to display. What does this mean? Well with one buffer, you&#39;re necessarily doing the CPU Render -&gt; DMA Display -&gt; CPU Render -&gt; etc. pipeline sequentially. Attempting to update the screen buffer while it&#39;s being uploaded results in visual artifacts. With two buffers, the CPU and DMA can touch mutually exclusive memory and &quot;swap&quot; when both are done with the current frame. </p>
+<h2>Faulty Hardware!</h2>
+<p>I spent a whole day writing ST7735 drivers and speed wise, it&#39;s way better than alternatives online. The only issue is it didn&#39;t work:
+<video width="720" height="405" autoplay loop muted playsinline>
+    <source src="assets/tft_glitch.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video></p>
+<p>It turns out the display I used was broken... when I replaced it:</p>
+<video width="720" height="405" autoplay loop muted playsinline>
+    <source src="assets/tft_ok.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+
+<p>Much better. There&#39;s still some noticeable flicker, which is due to the lack of vsync (i.e. the pixels being uploaded are racing the scanline updating the physical LCD) but good enough. In practice, you wouldn&#39;t dramatically change the whole screen (green &lt;-&gt; plane picture) like this anyways.</p>
+<h2>3D Rendering</h2>
+<p>There are three rendering methods I was considering for this project.</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Rasterisation"><em>Rasterization</em></a>: This is the most typical for video games. It involves creating geometry (i.e. meshes of triangles) and projecting those flat relative to the camera. Its performance scales (roughly) with the amount of geometry.</li>
+<li><a href="https://en.wikipedia.org/wiki/Rasterisation"><em>Doom-esque Rendering</em></a>: It isn&#39;t <em>really</em> 3D, but clever hacks that reduce perspective warping. It works especially well for tall walls around the camera but things like looking up/down are limited.</li>
+<li><a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)"><em>Raytracing</em></a>: Simulates light rays for every pixel on the camera. More advanced implementations can simulate light bounces too (e.g. path tracing) and it&#39;s the preferred approach for realistic renders. Performance scales (roughly) with the size of the screen.</li>
+</ul>
+<h2>Raytracing</h2>
+<p>I chose raytracing because the screen I&#39;m drawing to is relatively small. Also, voxels require a considerable amount of geometry which is expensive on 264kB of SRAM or computationally inefficient if we don&#39;t cache. Also, raytracing in a voxel grid is very efficient (in fact it&#39;s used as an <a href="https://en.wikipedia.org/wiki/Binary_space_partitioning">optimization</a> for more complex raytracers).</p>
+<p>The first step in raytracing is ray <em>casting</em>. The latter is shooting one ray into the world and yielding what it hit, whereas the former is shooting a whole bunch of those rays to create an image. So once raycasting is implemented, the rest is trivial. I chose <a href="http://www.cse.yorku.ca/~amana/research/grid.pdf">this algorithm</a> (A. Woo) and used <a href="https://github.com/fenomas/fast-voxel-raycast">this implementation</a> as reference.</p>
+<p>I hard-coded a basic 3D model into the program, then animated the camera to move forward:
+<video width="1081" height="636" autoplay loop muted playsinline>
+    <source src="assets/render_slowest.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video></p>
+<h2>Fixed-Point Arithmetic</h2>
+<p>So first implementation is <em>really</em> slow. Why? Well it turns out that the RP2040 doesn&#39;t have a <a href="https://en.wikipedia.org/wiki/Floating-point_unit">floating-point unit (FPU)</a> so any operations involving <em>f32</em> or <em>f64</em> is emulated via software. This is really expensive, and these types are designed for precision which is really redundant when your output is a 160 x 128 screen.</p>
+<p>I found <a href="https://people.ece.cornell.edu/land/courses/ece4760/RP2040/C_SDK_fixed_pt/index_fixed.html">this paper</a> which compares floating point to fixed point arithmetic on the Pico. Fixed point is implemented with integer operations so it&#39;s a lot faster at the cost of precision and range.</p>
+<p>To test this, I implemented a 32-bit <em>Fixed</em> type with a 15-bit fractional part. Depending on the use case, it may make more sense to shift around this integer/decimal distribution, or even drop down to a 16-bit representation, but I opted for simple first. Still, this drop-in replacement is a lot faster:
+<video width="799" height="720" autoplay loop muted playsinline>
+    <source src="assets/render_slow.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video></p>
+<h2>Multicore Processing</h2>
+<p>The Pico has <em>two</em> cores, and so far I&#39;ve been using just one. So let&#39;s add what is probably the most obvious &quot;optimization.&quot; With raytracing, this is trivial: <em>core0</em> renders the first half of the screen, and <em>core1</em> renders the rest. These regions can operate independently and don&#39;t overlap:
+<video width="1216" height="720" autoplay loop muted playsinline>
+    <source src="assets/render_fast.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video></p>
+<h2>Overclocking</h2>
+<p>One last touch is just making the processor faster. The Pico will run at 125MHz if you don&#39;t tell it anything, but it&#39;s safe to double that. Some people have even <a href="https://forums.raspberrypi.com/viewtopic.php?t=301902">reached 436MHz</a>! This makes performance about twice as good, but I didn&#39;t want to push it farther since it risks damaging the hardware.</p>
+<h2>It&#39;s 3D??</h2>
+<p>If you&#39;re not convinced everything I&#39;ve been showing is actually 3D, here is the same model spinning:
+<video width="1216" height="720" autoplay loop muted playsinline>
+    <source src="assets/render_spin.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video></p>
+<h2>Due dates!!</h2>
+<p>I was out during the weekend and had all of two days to start and finish the project. So I started running out of time and had to put aside my dream of running Minecraft on the Pico. Instead, I&#39;ll completely forgo the gameplay and focus on the graphics. But to make it cool, I created a Minecraft plugin using <a href="https://www.spigotmc.org">Spigot</a> that will communicate with the Pico to transmit world data over:
+<video width="1043" height="720" autoplay loop muted playsinline>
+    <source src="assets/chunk_spin.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video></p>
+<p><img src="assets/minecraft.jpeg" alt="Screenshot of minecraft">
+<em>I&#39;m running a modded server that transmits whatever chunk the player is in to the Pico</em></p>
+<h2>Lambert Shading</h2>
+<p>Finally, I added simple <a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-shading/diffuse-lambertian-shading.html">lambert shading</a> which makes it look a lot nicer:
+<video width="917" height="720" autoplay loop muted playsinline>
+    <source src="assets/final_product.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video></p>
+<p><a href="assets/code.zip">Download the source code + uf2</a> (170kB)</p>
+
+
+                <div class="center">
+                    <a href="/" class="small">(go back)</a>
+                </div>
+            </body>
+        </html>
+        

@@ -1,0 +1,166 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8">
+                <meta name="HandheldFriendly" content="true"/>
+                <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=yes">
+                
+                <title>Brass Rat / Yohan Guyomard</title>
+                <link rel="stylesheet" href="../../styles.css">
+            </head>
+            <body>
+                <a href="../../">Portfolio</a> &gt; <b>Brass Rat</b>
+                <p><em>(I&#39;m still working on this project. I post updates on my blog <a href="https://fab.cba.mit.edu/classes/863.23/EECS/people/Yohan/week3/">here</a>!)</em></p>
+<div class="row">
+
+<p><img src="assets/clear_front.jpeg" alt="medium"></p>
+<p><img src="assets/clear_rfid.jpeg" alt="medium"></p>
+</div>
+
+<h2>NFC Brass Rat</h2>
+<p>I wear my class ring (<a href="https://en.wikipedia.org/wiki/MIT_class_ring">Brass Rat</a>) just about all the time. But as far as cool functionality goes, it&#39;s a little underwhelming (no, the <a href="http://brassrat.mit.edu/2025/design#map">hacker&#39;s map</a> does not count). This week I&#39;m making a replica Brass Rat that will tap into MIT campus, dorms and other cool stuff.</p>
+<h2>RFID? NFC?</h2>
+<p>The idea of a ring that functions as a wireless ID card isn&#39;t new; in fact, there&#39;s plenty of <a href="https://www.adafruit.com/product/2806">commercial options</a> out there and even an <a href="https://learn.adafruit.com/3d-printed-rfid-nfc-rings/overview">Adafruit tutorial</a> on 3D printing your own. But it turns out that replicating an MIT student ID card isn&#39;t trivial, and I spent the first few days of this week researching and sourcing parts. Here&#39;s a rundown of the situation.</p>
+<p>So what is RFID? Well it stands for Radio-Frequency Identification, and its subset that we actually care about is Near-Field Communication (NFC). The &quot;tag&quot; (e.g. student ID card) is a passive chip and antenna that will be powered by and communicate with a reader (your phone, tap-access readers, etc.). This all happens wirelessly and the electronics can get to ridiculous sizes (I mean think about how slim NFC badges are).</p>
+<p>The issue is that these were designed to be secure and have some measures against cloning. For example, MIT student IDs use the <strong>Mifare Classic 1K</strong> which have a 4-byte unique identifier <em>burned</em> into the chip, permanently! So if you source these chips from the <a href="https://www.nxp.com/products/rfid-nfc/mifare-hf:MC_53422">manufacturer</a>, cloning is impossible.</p>
+<p><img src="assets/nfc_tools.jpeg" alt="small centered">
+<em>Screenshot of NFC Tools, which I used to identify the chip</em></p>
+<p>So what do we do? Introducing <strong><em>Magic</em> Mifare Classic 1K</strong> cards. They&#39;re basically bootleg tags that, from the perspective of an NFC reader, behave exactly like their regular counterparts. The difference is that their 4-byte &quot;unique&quot; identifier is changeable. It&#39;s for that same reason that they&#39;re a little rarer, and I only have a week to purchase and deliver these parts so I&#39;ll have to do some fiddling around. Here&#39;s what I ordered:</p>
+<ul>
+<li><strong>NTag213 22x12mm</strong> <a href="https://a.co/d/iaxHOyp">(Amazon)</a><ul>
+<li>Basically the perfect form-factor, but there&#39;s zero chance I will be able to clone my student ID card onto this chip. I have it as a last resort to do <em>something</em> in case all of this fails.</li>
+</ul>
+</li>
+<li><strong>Magic MIFARE 1K Key Tags</strong> <a href="https://a.co/d/95gB7Mb">(Amazon)</a><ul>
+<li>I can clone my student ID onto these, but they&#39;re bulky. Even if I manage to remove the PVC casing completely, the antenna itself is still too large for a ring.</li>
+</ul>
+</li>
+</ul>
+<h2>Crop it, Duh!</h2>
+<p>A few days later, my packages arrived and it was time to test the NFC chips. I borrowed my friend&#39;s <a href="https://a.co/d/gFieX9J">desktop NFC reader/writer</a> and successfully copied my school ID to the <em>Magic MIFARE 1K Key Tags</em> but had no luck with the smaller <em>NTag213</em>&#39;s.</p>
+<p><img src="assets/nfc_screenshot.jpeg" alt="screenshot">
+<em>The NFC writer&#39;s software looks pretty sketch but hey, it works!</em></p>
+<p>Now the only issue was this unfortunate form-factor:</p>
+<p><img src="assets/nfc_keys.jpeg" alt="NFC key tags">
+<em>Maybe I should&#39;ve made a keychain?</em></p>
+<p>So, using a pair of needle nose pliers, I <del>obliterated</del> dissected the key tags mentioned above. And, well, the antenna inside of it is way too big like I thought.
+<img src="assets/rfid_chip_01.jpeg" alt="Inside of MIFARE tag">
+<em>The antenna are the coils of copper and the black dot is the chip itself</em></p>
+<p>But, since the copper is thin enough to be flexible, I was able to bend it to fit in the base of the ring. So it might look pretty bad but this ring will tap anywhere on MIT campus!</p>
+<p><img src="assets/purple_ring.jpeg" alt="Ring v1">
+<em>It might not be very comfortable but the antenna isn&#39;t visible when worn</em></p>
+<h2>Surgical Procedures</h2>
+<p><em>This section is something I&#39;d like to try but haven&#39;t gotten around to yet</em>
+For both NFC tags (the keychain and sticker), the only relevant part is the chip. The rest is an antenna, which just has to be a coil of some conductive material. So I&#39;d like to transfer the working NFC chip onto the antenna of sticker tag, which has the right form factor.</p>
+<h2>The Brass Rat</h2>
+<p>Ok so nerd stuff aside, I still need to replicate the brass rat. This week&#39;s assignment is 3D printing so I will be taking that route. Let&#39;s make a 3D model.
+<img src="assets/brass_rat.jpeg" alt="Image of the brass rat">
+<em>Here&#39;s what I&#39;m recreating</em></p>
+<p>The issue is I&#39;m terrible at <a href="https://www.maxon.net/en/zbrush">digital sculpting</a> and this model would be way too intricate to make by hand (let alone in a week!). Thankfully, the people behind the ring have an entire webpage dedicated to its design, with some really high resolution images (clearly they didn&#39;t take HTMAA)!</p>
+<video width="988" height="720" autoplay loop muted playsinline>
+    <source src="assets/brass_rat_website.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+
+<h2>Displacement Mapping</h2>
+<p>The 3D modelling technique I will be using is called <a href="https://en.wikipedia.org/wiki/Displacement_mapping">displacement mapping</a>. Basically, a greyscale image is projected onto dense 3D geometry and its vertices are moved along their normals, proportional to the lightness of the corresponding pixel.</p>
+<video width="1903" height="720" autoplay loop muted playsinline>
+    <source src="assets/blender_demo.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+
+<p>So I just need to convert the drawings of the Brass Rat&#39;s sides from <a href="#the-brass-rat">above</a> into greyscale displacement maps and I should be good to go! There are a few different ways to do this; below is what I tried.</p>
+<p><img src="assets/depth_attempt_transfer.jpeg" alt="Results of style transfer">
+<em><strong>Attempt #01:</strong> <a href="https://reiinakano.com/arbitrary-image-stylization-tfjs/">This</a> style transfer of an image using a generic depth map</em></p>
+<br/>
+
+<p><img src="assets/depth_attempt_ai.jpeg" alt="Results of depth map">
+<em><strong>Attempt #02:</strong> Using <a href="https://huggingface.co/spaces/pytorch/MiDaS">this</a> AI depth-map generator</em></p>
+<br/>
+
+<p><img src="assets/depth_attempt_script.jpeg" alt="Results of ChatGPT">
+<em><strong>Attempt #03:</strong> I asked ChatGPT to write an OpenCV script</em></p>
+<br/>
+
+<p>So clearly AI isn&#39;t taking our jobs just yet. The results above range from completely useless to lacking details to not understanding what a depth map is (even if there appears to be details, we don&#39;t just want contours!). So I will do it, <em>sigh</em>, manually in Adobe Photoshop.</p>
+<p><img src="assets/depth_attempt_photoshop.jpeg" alt="Results of manual labour">
+<em><strong>Attempt #04:</strong> Well ya can&#39;t go wrong with manually coloring every detail :P</em></p>
+<h2>Ring Base</h2>
+<p>Now I needed to model the Brass Rat, minus all the details. Shout-out to <a href="https://www.shapr3d.com">Shapr3D</a> for being an awesome CAD program, look at how satisfying this is:</p>
+<video width="1411" height="720" autoplay loop muted playsinline>
+    <source src="assets/base_model.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+
+<h2>Millions and Millions of Vertices</h2>
+<p>Here is the final result!
+<video width="812" height="720" autoplay loop muted playsinline>
+    <source src="assets/turnaround.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video></p>
+<h2>SLA Printing</h2>
+<p>It&#39;s pretty clear that the level of detail I&#39;m seeking is near-impossible on any FDM printer (the type of 3D printers that deposit melted plastic one layer at a time). In fact, I didn&#39;t even try because the slicer software for the <a href="https://www.prusa3d.com/category/original-prusa-i3-mk3s/">Prusa i3 Mk3</a> gave me some less than desirable previews.</p>
+<p><img src="assets/ring_slicer.jpeg" alt="Slicer">
+<em>The poor beaver getting massacred by very thick lines of PLA filament</em></p>
+<p>Instead I opted for the awesome <a href="https://formlabs.com/3d-printers/form-3/">FormLabs Form 3+</a>, a stereolithography (SLA) 3D printer. Both FDM and SLA work one layer at a time, but the latter has much better resolution and surface finish.</p>
+<p><img src="assets/print_bed.jpeg" alt="PreForm">
+<em>Here are the rings in Formlabs&#39; &quot;slicer-software-equivalent&quot;</em></p>
+<p>For any MIT students who are interested, I made these prints at <a href="https://project-manus.mit.edu/making-at-mit/our-system">The Deep</a>. From my minimal research, they have the best resin prices on campus (each ring cost me around half a dollar).</p>
+<video width="405" height="720" autoplay loop muted playsinline>
+    <source src="assets/curing.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+
+<h2>Roto281 Casting</h2>
+<p><em>Planned for the future</em></p>
+<p>For this project, I&#39;d like the final version to be made of real metal. The EECS lab section apparently has some roto281, which is an alloy with a really low melting point (well, 281º F). Using roto281 would have saved me a trip to <a href="https://metalslab.mit.edu/metal-classes">the foundry</a>.</p>
+<h2>Electroplating</h2>
+<p><em>Planned for the future</em></p>
+<p>This process deposits a very thin layer of metal onto a conducting surface. So, cheap roto281 turned to gold <em>(-ish)</em> 🤑. Another option is spray painting the resin ring with conductive paint but none of the labs I reached out to had the resources to help me (and getting them myself is way out of budget).</p>
+<h2>Lost-Wax Casting</h2>
+<p><em>Planned for the future</em></p>
+<p>So it turns out that Formlabs sells <a href="https://formlabs.com/store/materials/castable-wax-resin/">Castable Wax</a>, which make the perfect investment for lost-wax casting. The process involves making a negative mold by (literally) burning away the positive part (which is made of wax). Then, any metal (even hotter than roto281 provided the right tools) can be poured in and casted. I printed using this and it turned out just as good as the <a href="https://formlabs.com/store/materials/clear-resin/">clear resin</a> but melting this would&#39;ve required temperatures way hotter than what EDS can do.</p>
+<h2>Mold</h2>
+<p>As a last ditch attempt, I decided to print the negative mold directly out of resin, and pour the metal in <em>that</em>. It was made pretty quickly though (for this entire project, I am wrestling between lab open hours and printing time; it is logistical hell) and everything that could go wrong, went wrong.</p>
+<p><img src="assets/resin_mold_01.jpeg" alt="Resin mold">
+<em>To separate mold from cast, you&#39;ll probably need to break something. This should&#39;ve been a three part mold!</em></p>
+<p><img src="assets/resin_mold_02.jpeg" alt="Resin mold">
+<em>I somehow messed up my UVs and printed the bezel in portrait orientation 🤦🏽‍♂️</em></p>
+<p><img src="assets/resin_mold_00.jpeg" alt="Resin mold">
+<em>And perhaps the biggest fail: I checked the datasheet after the print, this resin would&#39;ve burnt if I used it to cast</em></p>
+<h2>Final Demo</h2>
+<p>So, lots of logistical failures this week but I technically accomplished what I set out to make: a brass rat that can tap into buildings. Here&#39;s the final demo:</p>
+<video width="405" autoplay loop muted playsinline>
+    <source src="assets/final_demo.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">Cost</th>
+<th align="center">Can tap into buildings?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="assets/comparison_resin.jpg" alt="medium"></td>
+<td align="left">$0.97</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td align="center"><img src="assets/comparison_real.jpeg" alt="medium"></td>
+<td align="left">$208 - $1857</td>
+<td align="center">✖</td>
+</tr>
+</tbody></table>
+<p>So, in conclusion: meh, I&#39;ll improve upon this during <a href="http://academy.cba.mit.edu/classes/molding_casting/index.html">molding &amp; casting week</a>.</p>
+
+
+                <div class="center">
+                    <a href="/" class="small">(go back)</a>
+                </div>
+            </body>
+        </html>
+        

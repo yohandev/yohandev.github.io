@@ -1,0 +1,12 @@
+id = "soop"
+title = "Scratch Object Oriented Programming(SOOP)"
+channel = "Hobby Projects"
+date = "2 years ago"
+description = """
+For a hackathon, I made an object oriented version of scratch.mit.edu.
+It aims to be a more natural transition from block programming to real
+world programming paradigms. 
+"""
+video = "assets/videos/content/soop.mp4"
+tags = ["Typescript"]
+filters = ["All", "Web"]

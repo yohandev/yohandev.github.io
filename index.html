@@ -1,15 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Portfolio</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=yes">
+        
+        <title>Portfolio / Yohan Guyomard</title>
+        <link rel="stylesheet" href="./styles.css">
 
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="stylesheet" href="app.css"/>
-    
-    <script src="https://kit.fontawesome.com/e6849438e6.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <script src="app.js"></script>
-</body>
+        <script src="https://kit.fontawesome.com/e6849438e6.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="row">
+            <img id="profile-picture" src="./assets/profile_picture.jpeg">
+            <div>
+                <div class="dense">
+                    <h1>Yohan Guyomard</h1>
+                    <p>&nbsp;&nbsp;yohang <em>at</em> mit <em>dot</em> edu</p>
+                </div>
+            </div>
+        </div>
+        <p>
+            Hello, and welcome to my personal portfolio! I'm a third-year undergraduate
+            studying computer science, electrical engineering, and mechanical engineering
+            at <a href="https://mit.edu/">MIT</a>. And when I'm not studying, you'll find
+            me jamming at the piano, following some recipe, or working on the projects
+            outlined below!
+        </p>
+        <div class="center subtitle" id="links">
+            <i class="fa-brands fa-square-github"></i>&nbsp;<a href="https://github.com/yohandev/">GitHub</a>&nbsp;&nbsp;
+            <i class="fa-brands fa-linkedin"></i>&nbsp;<a href="https://www.linkedin.com/in/yohan-guyomard/">LinkedIn</a>&nbsp;&nbsp;
+            <i class="fa-solid fa-file-pdf"></i>&nbsp;<a href="./assets/resume.pdf">Resume</a>
+        </div>
+
+        <h2>Coursework & Internships</h2>
+        <div class="row scroll">
+            <div class="box">
+                <div class="dense">
+                    <h3>Google</h3>
+                    Internship 2022
+                </div>
+                <p class="small">Completed two full-stack web projects on the Chrome Web Store.</p>
+            </div>
+            <div class="box">
+                <div class="dense">
+                    <h3>Google</h3>
+                    Internship 2023
+                </div>
+                <p class="small">
+                    Integrated LLDB with Visual Studio with specialized tooling for debugging Android
+                    applications.
+                </p>
+            </div>
+            <div class="box">
+                <div class="dense">
+                    <h3 class="small">How to Make (Almost) Anything</h3>
+                    MIT 6.9020
+                </div>
+                <p class="small">
+                    Weekly digital fabrication assignments covering 3D printing, embedded programming,
+                    machining and more.
+                </p>
+            </div>
+            <div class="box">
+                <div class="dense">
+                    <h3>Deep Learning</h3>
+                    MIT 6.S898
+                </div>
+                <p class="small">
+                    Graduate-level course covering MLPs, CNNs, GNNs, transformers and ongoing research
+                    in deep neural networks.
+                </p>
+            </div>
+            <div class="box">
+                <div class="dense">
+                    <h3>Embedded Systems</h3>
+                    MIT 6.08
+                </div>
+                <p class="small">
+                    Project-based introduction to microcontrollers and the internet of things (IoT).
+                </p>
+            </div>
+        </div>
+        <div class="center">
+            <a href="./coursework" class="small">(see all)</a>
+        </div>
+        <h2>Project Highlight</h2>
+        <div class="grid">
+                <a class="large-box" href="/portfolio/picocraft/">
+                    <div class="dense">
+                        <h3>Picocraft</h3>
+                        Raytracing on $4 Microcontroller
+                    </div>
+                    <video alt="preview" width="917" autoplay loop muted playsinline>
+                        <source src="./portfolio/picocraft/assets/final_product.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="small">
+                        Implementation of a voxel raytracer optimized to run in real time on an ARM Cortex-M0
+                        microcontroller.
+                    </p>
+                </a>
+            <a class="large-box" href="/portfolio/brass-rat/">
+                <div class="dense">
+                    <h3>NFC Brass Rat</h3>
+                    3D Printed Class Ring
+                </div>
+                <video alt="preview" autoplay loop muted playsinline>
+                    <source src="./portfolio/brass-rat/assets/turnaround.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <p class="small">
+                    Some experimentation with integrating tech into jewelry, SLA printing and casting.
+                </p>
+            </a>
+            <a class="large-box" href="/portfolio/brawler/">
+                <div class="dense">
+                    <h3>Boxbrawl</h3>
+                    Online Multiplayer Game
+                </div>
+                <video alt="preview" width="1250" autoplay loop muted playsinline>
+                    <source src="./portfolio/brawler/assets/preview.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <p class="small">
+                    Web-based game using Rust (WebAssembly) and UDP (WebRTC).
+                </p>
+            </a>
+            <a class="large-box" href="/portfolio/drone/">
+                <div class="dense">
+                    <h3>Drone</h3>
+                    Quadcopter Built from Scratch
+                </div>
+                <video alt="preview" width="320" autoplay loop muted playsinline>
+                    <source src="./portfolio/drone/assets/preview.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <p class="small">
+                    Challenging myself to build just about everything in a quadcopter and
+                    writing its flight controller.
+                </p>
+            </a>
+        </div>
+        <h2>Older Projects</h2>
+        <div class="grid">
+            <a class="large-box" href="/portfolio/fleet-o-robots/">
+                <div class="dense">
+                    <h3>Fleet-o-Robots</h3>
+                    Autonomous, Cooperative Robots
+                </div>
+                <img src="./portfolio/fleet-o-robots/assets/preview.jpeg" width="75%"/>
+                <p class="small">
+                    I built more robots than had ever been built before for MIT's 2.S007
+                    competition.
+                </p>
+            </a>
+            <a class="large-box" href="/portfolio/x-wing/">
+                <div class="dense">
+                    <h3>X-Wing Dogfight</h3>
+                    Online Multiplayer Game
+                </div>
+                <img src="./portfolio/x-wing/assets/preview.jpg"/>
+                <p class="small">
+                    Fun little game I built to play with my friends.
+                </p>
+            </a>
+            <a class="large-box" href="/portfolio/jammin/">
+                <div class="dense">
+                    <h3>Jammin'</h3>
+                    Online Multiplayer Music Experience
+                </div>
+                <img src="./portfolio/jammin/assets/preview.jpg"/>
+                <p class="small">
+                    A web application for jamming with your friends over the internet!
+                </p>
+            </a>
+            <a class="large-box" href="/portfolio/ragdoll/">
+                <div class="dense">
+                    <h3>Ragdoll</h3>
+                    Physics-Based Game
+                </div>
+                <img src="./portfolio/ragdoll/assets/preview.jpg"/>
+                <p class="small">
+                    A video game about torturing a ragdoll. Made in 24h for a hackathon.
+                </p>
+            </a>
+            <a class="large-box" href="/portfolio/tetris/">
+                <div class="dense">
+                    <h3>Tetris</h3>
+                    Online Multiplayer Game
+                </div>
+                <img src="./portfolio/tetris/assets/preview.jpeg"/>
+                <p class="small">
+                    This was my final project for AP Computer Science, written in Java!
+                </p>
+            </a>
+            <a class="large-box" href="/portfolio/soop/">
+                <div class="dense">
+                    <h3>Soop</h3>
+                    Object-Oriented Scratch
+                </div>
+                <img src="./portfolio/soop/assets/preview.jpg"/>
+                <p class="small">
+                    I learned to program through scratch as a kid, so I thought I'd make
+                    its big brother "soop."
+                </p>
+            </a>
+            <a class="large-box" href="/portfolio/club-day/">
+                <div class="dense">
+                    <h3>Club Day</h3>
+                    Website
+                </div>
+                <img src="./portfolio/club-day/assets/preview.jpeg"/>
+                <p class="small">
+                    Small website I made for my high school's club day. It scaled to a couple
+                    thousand concurrent users.
+                </p>
+            </a>
+        </div>
+    </body>
 </html>

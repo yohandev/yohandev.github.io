@@ -1,0 +1,15 @@
+id = "clock"
+title = "ESP32 Clock"
+channel = "MIT Projects"
+date = "1 year ago"
+description = """
+Here is a clock I made for an embedded systems class, using an ESP32
+microcontroller.
+\n\n
+Its primary feature is fetching the current time, at startup and every
+minute thereafter, from a Flask server. Just for fun, I've added the
+Chrome dinosaur that runs across the screen.
+"""
+video = "assets/videos/content/clock.mp4"
+tags = ["C", "Arduino"]
+filters = ["All", "Microcontrollers", "Web"]

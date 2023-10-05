@@ -1,0 +1,18 @@
+id = "shooter"
+title = "Online FPS"
+channel = "Hobby Projects"
+date = "4 years ago"
+description = """
+After having made a few multiplayer games using built-in
+solutions in the Unity game engine, I was dissatisfied with
+the poor performance and lag. So, I took my experience and
+a few helpful tips from gafferongames.com to make a high
+speed first person shooter demo.
+\n\n
+It builds on top of my own UDP transport layer written in C#
+and features server reconciliation, client interpolation and
+a server-authoritative architecture.
+"""
+video = "assets/videos/previews/shooter.mp4"
+tags = ["C#", "Unity"]
+filters = ["All", "Games"]

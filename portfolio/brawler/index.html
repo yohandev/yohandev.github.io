@@ -1,0 +1,60 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8">
+                <meta name="HandheldFriendly" content="true"/>
+                <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=yes">
+                
+                <title>Brawler / Yohan Guyomard</title>
+                <link rel="stylesheet" href="../../styles.css">
+            </head>
+            <body>
+                <a href="../../">Portfolio</a> &gt; <b>Brawler</b>
+                <h1>Boxbrawl</h1>
+<p><em>Welcome to &quot;Over-Engineering a Simple .io Game 101&quot;</em></p>
+<video width="1250" autoplay loop muted playsinline>
+    <source src="assets/preview.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
+
+<h2>An Online Multiplayer Game</h2>
+<p>This game is a brawler, similar to <a href="https://www.smashbros.com/en_US/">Super Smash Bros</a>, but with a twist: none of the characters are pre-made. Instead, players mix-and-match a fixed number of abilities/weapons/power-ups (similar to the deck building aspect of <a href="https://supercell.com/en/games/clashroyale/">Clash Royale</a>). So it caters to all playing styles and incorporates strategy with the classic brawler genre.</p>
+<p>The entire game runs in the web browser and friends play over the internet. For a while, I had some servers hosted on <a href="https://cloud.google.com/">Google Cloud</a>.</p>
+<h2>UDP on the Browser</h2>
+<p>So as far as games are concerned, there are two protocols to communicate over the internet: TCP and UDP. TCP is nice because it&#39;ll ensure every packet is sent in-order and actually received. But that usually involves blocking previous packets and other non-negligible amounts of overhead that make things like movement and attacks really laggy.</p>
+<p>UDP, on the other hand, just sends packets and hopes for the best. If something is lost, so be it. This is actually desirable for video games because realtime is more important than reliability; we always want the most recent packet as soon as possible and don&#39;t really care about the order/completeness thereof. Then, additional techniques can be employed to mitigate the effects of out-of-order packets with minimal overhead. I based my implementation of this on <a href="https://gafferongames.com/">this</a> awesome blog by Glenn Fiedler.</p>
+<p>The problem is that UDP on the web really sucks. <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">WebSockets</a> (which is built on TCP) is already easy, and things like <a href="https://socket.io/">socket.io</a> help too. But for UDP, <a href="https://webrtc.org/">WebRTC</a> is our only option. It&#39;s very boilerplate heavy and is designed to be peer-to-peer, whereas I want a server-client architecture (server authoritative games are generally better at preventing cheating). Thankfully, I found this library called <a href="https://geckos.io/">geckos.io</a> which provides a <em>socket.io</em>-esque interface over WebRTC.</p>
+<h2>Entity Component System (ECS) and Server Authoritative</h2>
+<p>The project structure at a glance: I&#39;m using an <a href="https://github.com/Ralith/hecs">ECS</a> so everything in the game world is an entity. I built a custom game engine for this project so just about everything was thought around this <em>ECS</em> paradigm. For example, I made a physics engine from scratch that relies on <strong>Velocity</strong> and <strong>Mass</strong> components; most other engines (well, namely Unity) copy data back and forth between the world and some third-party physics engine so ECS is just an afterthought.</p>
+<p>As for networking, I&#39;m making the game server authoritative. That means that the server has the final say in every interaction which greatly reduces the amount of cheats possible. For example, the client sends user inputs (literally &quot;I am pressing the right arrow key&quot;) and the server responds with everyone&#39;s <em>actual</em> position. Of course, I added some tricks like client-side prediction, interpolation and reconciliation to make the whole thing feel seamless. I think this is where UDP truly shined because these techniques rely on as close to realtime as possible.</p>
+<h2>Rust on the Browser &amp; Node</h2>
+<p>I wanted to use <a href="https://www.rust-lang.org/">Rust</a> on this project. It&#39;s a systems language and would be a really good choice for a more intensive game; in this scenario it&#39;s completely overkill but I wanted to use it anyways.</p>
+<p>Getting Rust on the web and node.js isn&#39;t too bad and is just a matter of changing the build target to <a href="https://webassembly.org/">WebAssembly</a> and accepting a few caveats (e.g. <strong>no-std</strong>). What I think is really cool, however, is the FFI boundary between Typescript and Rust and how ECS helped a lot. For example, the graphics are just <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg">&lt;svg&gt;</a> elements and I wrote an <strong>extern &quot;C&quot;</strong> function that queries every <strong>Sprite</strong> and <strong>Position</strong> components as well as their corresponding <strong>EntityId</strong>. So in this scenario I have retained graphics that are &quot;abstracted&quot; across the FFI boundary and made convenient by the ECS.</p>
+<p>One more thing: the server and client work off the same code base. A common pattern in online games is to have two projects, <em>client</em> and <em>server</em>. They are usually disjoint for the most part and I experimented with doing a little better. What I ended up using also makes use of ECS and involves selectively adding components/systems based on the compilation target (client or server). So code duplication is kept at a minimum and the corresponding client/server-authoritative bits of codes are next to each other in the source. This approach isn&#39;t perfect but I thought it was neat.</p>
+<h2>User Accounts</h2>
+<p>I implemented <a href="https://developers.google.com/identity/protocols/oauth2">Google&#39;s OAuth 2.0</a> into this project to save user&#39;s decks. Originally I wanted to have a card-collection system but I never got around to it. Data storage is then done in <a href="https://www.mongodb.com/">MongoDB</a>.</p>
+<h2>Graphics</h2>
+<p>The sprites were sketched in <a href="https://procreate.com/">Procreate</a> and cleaned up in <a href="https://www.adobe.com/products/illustrator.html">Adobe Illustrator</a>.</p>
+<p><img src="./assets/sketch_01.jpeg" alt="Sketch">
+<em>Early sketch of the game</em></p>
+<p><img src="./assets/sketch_02.jpeg" alt="Sketch">
+<em>The UI was also sketched out beforehand</em></p>
+<p><img src="./assets/sketch_03.jpg" alt="Sketch">
+<em>Draft for one of the ability icons</em></p>
+<p><img src="./assets//sketch_04.jpg" alt="Sketch">
+<em>Example of a cleaned up icon, this time in Procreate</em></p>
+<p><img src="./assets/sketch_05.jpeg" alt="Sketch">
+<em>Sketch for the &quot;dual guns&quot; weapon</em></p>
+<p><img src="./assets/sketch_06.jpeg" alt="Sketch">
+<em>Sketch for the &quot;shotgun&quot; weapon</em></p>
+<p><img src="./assets/screenshot.jpeg" alt="Screenshot">
+<em>And here are some of these things, finalized, in the main menu!</em></p>
+
+
+                <div class="center">
+                    <a href="/" class="small">(go back)</a>
+                </div>
+            </body>
+        </html>
+        
