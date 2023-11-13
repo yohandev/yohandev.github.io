@@ -27,12 +27,13 @@ img {
     margin-top: 1em;
 }
 
-a {
+a, .pseudo-link {
     color: currentColor;
     position: relative;
+    text-decoration: underline;
 }
 
-a:hover::before {
+a:hover::before, .pseudo-link:hover::before {
     background-color: #ffd500;
 
     content: "";
@@ -46,16 +47,20 @@ a:hover::before {
 }
 
 a.large-box,
-a.box{
+a.box,
+.pseudo-link.large-box,
+.pseudo-link.box {
     text-decoration: none;
     transition: ease-out 0.15s box-shadow;
 }
 
-a.large-box:hover::before {
+a.large-box:hover::before,
+.pseudo-link.large-box:hover:before {
     background: none;
 }
 
-a.large-box:hover {
+a.large-box:hover,
+.pseudo-link.large-box:hover {
     /* outline: solid 0.5px #ffd500; */
     box-shadow: 0 0 2.5px #ffd500;
 }
