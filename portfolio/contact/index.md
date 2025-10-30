@@ -118,7 +118,9 @@ Things really picked up when I asked for some help, though. I made an AT command
 ## Leadership, kinda?
 Since I led the EE and firmware teams for _Contact_, I got a bit of leadership experience. Of course, everyone on the team is cracked so my job wasn't super difficult, but I learned a lot about planning things out and delegating work. The most fun part though is showing off what we've been working on to the rest of the team; here is one of those update slide-decks.
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSqu3zmo5CJwJZChyKgu7t03d2iA1xVoyJDd4j9qoVi1WiNX6mRYY63jKcR-ghVl_V-bbT9jHl8Iw8R/pubembed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<div class="center">
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSqu3zmo5CJwJZChyKgu7t03d2iA1xVoyJDd4j9qoVi1WiNX6mRYY63jKcR-ghVl_V-bbT9jHl8Iw8R/pubembed?start=false&loop=false&delayms=3000" frameborder="0" width="320" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+</div>
 
 ## Crash Detection
 This subsystem was led by another sub-team, but I helped a bit as they needed some electronics stuff early on (i.e. couldn't wait for the PCB and firmware to be complete first).
