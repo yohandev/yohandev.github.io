@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/upload/info.js"],
+  "sourcesContent": ["import pcbInstructions from \"../assets/info/pcb_instructions.mp4\";\nimport batteryImg from \"../assets/info/battery.png\";\nimport dcMotorImg from \"../assets/info/dc_motor.png\";\nimport servoMotorImg from \"../assets/info/servo_motor.png\";\nimport enclosureImg from \"../assets/info/enclosure.png\";\n\nconst abs = (path) => new URL(path, import.meta.url).href;\n\ndocument.getElementById(\"info-video-pcb-src\").src = abs(pcbInstructions);\ndocument.getElementById(\"info-video-pcb\").load();\n\ndocument.getElementById(\"info-img-battery\").src = abs(batteryImg);\ndocument.getElementById(\"info-img-dc-motors\").src = abs(dcMotorImg);\ndocument.getElementById(\"info-img-servo-motors\").src = abs(servoMotorImg);\ndocument.getElementById(\"info-img-enclosure\").src = abs(enclosureImg);\n"],
+  "mappings": "uMAMA,IAAMA,EAAOC,GAAS,IAAI,IAAIA,EAAM,YAAY,GAAG,EAAE,KAErD,SAAS,eAAe,oBAAoB,EAAE,IAAMD,EAAIE,CAAe,EACvE,SAAS,eAAe,gBAAgB,EAAE,KAAK,EAE/C,SAAS,eAAe,kBAAkB,EAAE,IAAMF,EAAIG,CAAU,EAChE,SAAS,eAAe,oBAAoB,EAAE,IAAMH,EAAII,CAAU,EAClE,SAAS,eAAe,uBAAuB,EAAE,IAAMJ,EAAIK,CAAa,EACxE,SAAS,eAAe,oBAAoB,EAAE,IAAML,EAAIM,CAAY",
+  "names": ["abs", "path", "pcb_instructions_default", "battery_default", "dc_motor_default", "servo_motor_default", "enclosure_default"]
+}
